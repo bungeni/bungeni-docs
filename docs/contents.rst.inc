@@ -28,7 +28,8 @@ This part of the documentation focuses on explaining Bungeni, setting up your Py
 
   .. toctree::
      :maxdepth: 1
-
+	
+	 starting/install/about
      starting/install/bungeni
 	 starting/install/bungeni_help
 	 starting/install/contrib
@@ -41,8 +42,8 @@ This part of the documentation focuses on explaining Bungeni, setting up your Py
 
     starting/sysadmin/systemsadmin
 
-Writing Great Code
-------------------
+Customizing Bungeni and Writing Awesome Code
+--------------------------------------------
 
 This part of the guide focuses on best practices for writing Python code.
 
