@@ -39,11 +39,21 @@ Installing Bungeni
    :maxdepth: 2
 
    bungeni/about
-   writing/style
-   writing/documentation
-   writing/tests
-   writing/license
+   bungeni/bungeni
+   bungeni/bungeni_help
+   bungen/contrib
 
+
+Systems Administration
+----------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   sysadmin/webserver
+   sysadmin/dbserver
+   sysadmin/fabdeploy
+   sysadmin/capistrano
 
 Customizing Bungeni and Writing Awesome Code
 --------------------------------------------
