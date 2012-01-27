@@ -1,5 +1,3 @@
-.. _install-bungeni_help.rst
-
 Getting Help
 ============
 

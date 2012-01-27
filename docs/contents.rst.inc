@@ -24,16 +24,6 @@ This part of the documentation focuses on explaining Bungeni, setting up your Py
     
     starting/install/plone
 
-- Installing Bungeni
-
-  .. toctree::
-     :maxdepth: 1
-	
-	 starting/install/about
-     starting/install/bungeni
-	 starting/install/bungeni_help
-	 starting/install/contrib
-	
 		
 - System Administration
 
@@ -41,6 +31,19 @@ This part of the documentation focuses on explaining Bungeni, setting up your Py
     :maxdepth: 1
 
     starting/sysadmin/systemsadmin
+
+Installing Bungeni
+------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   bungeni/about
+   writing/style
+   writing/documentation
+   writing/tests
+   writing/license
+
 
 Customizing Bungeni and Writing Awesome Code
 --------------------------------------------

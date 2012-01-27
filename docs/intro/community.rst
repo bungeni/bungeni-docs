@@ -71,3 +71,8 @@ Python User Groups
 --------------------------
 
 User Groups are where a bunch of Python developers meet to present or talk about Python topics of interest. A list of local user groups is maintained at the `Python Software Foundation Wiki <http://wiki.python.org/moin/LocalUserGroups>`_.
+
+Plone Community
+---------------
+
+#TODO: write about the Plone community
