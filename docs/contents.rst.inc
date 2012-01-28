@@ -24,14 +24,6 @@ This part of the documentation focuses on explaining Bungeni, setting up your Py
     
     starting/install/plone
 
-		
-- System Administration
-
- .. toctree::
-    :maxdepth: 1
-
-    starting/sysadmin/systemsadmin
-
 Installing Bungeni
 ------------------
 
@@ -71,36 +63,16 @@ This part of the guide focuses on best practices for writing Python code.
 
 
 
-Scenario Guide
---------------
+Development Guide
+-----------------
 
 This part of the guide focuses on tool and module advice based on
-different scenarios.
+different scenarios and workflows availed when you use the Bungeni portal.
 
 .. toctree::
    :maxdepth: 2
 
-   scenarios/client
-   scenarios/web
-   scenarios/cli
-   scenarios/gui
-   scenarios/db
-   scenarios/admin
-   scenarios/ci
-   scenarios/speed
-   scenarios/scientific
-
-
-Shipping Great Code
--------------------
-
-This part of the guide focuses on deploying your Python code.
-
-.. toctree::
-   :maxdepth: 2
-
-   shipping/packaging
-   shipping/freezing
+   development/intro
 
 
 Development Environment
@@ -143,8 +115,3 @@ Contibution notes and legal information are here (for those interested).
    notes/contribute
    notes/license
    notes/styleguide
-
-
-
-
-

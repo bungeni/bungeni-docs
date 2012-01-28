@@ -91,7 +91,7 @@ pygments_style = 'flask_theme_support.FlaskyStyle'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'kr'
+html_theme_path = ['_themes']
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -99,7 +99,7 @@ html_theme = 'kr'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['_themes']
+html_theme = 'kr'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -168,7 +168,7 @@ html_show_sphinx = False
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'pythonguidedoc'
+htmlhelp_basename = 'bungenidocs'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -182,8 +182,8 @@ htmlhelp_basename = 'pythonguidedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'pythonguide.tex', u'Python Guide Documentation',
-   u'Kenneth Reitz', 'manual'),
+  ('index', 'bungenidocs.tex', u'Bungeni Technical Documentation',
+   u'Bungeni Dev Team, et al.', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -215,18 +215,18 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'pythonguide', u'Python Guide Documentation',
-     [u'Kenneth Reitz'], 1)
+    ('index', 'bungenidocs', u'Bungeni Technical Documentation',
+     [u'Bungeni Dev Team, et al.'], 1)
 ]
 
 
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'pythonguide'
-epub_author = u'Kenneth Reitz'
-epub_publisher = u'Kenneth Reitz'
-epub_copyright = u'2010, Kenneth Reitz'
+epub_title = u'bungenidocs'
+epub_author = u'Bungeni Dev Team, et al.'
+epub_publisher = u'Bungeni Dev Team, et al.'
+epub_copyright = u'2012, Bungeni Dev team et al.'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
