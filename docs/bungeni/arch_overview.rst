@@ -57,4 +57,18 @@ This is the application that provides the specific parliament features, it can b
     * *_Questions:_* list of questions and associated metadata about the matter of discussion, membership and sittings.
     * *_Motions:_* list of motions and associated metadata. Workflow and versioning actions are provided.
     * *_Tabled documents:_* list of tabled documents and metadata. Workflow and versioning actions are provided.
-    * *_Agenda items:_*
+    * *_Agenda items:_* this is a list of agenda items and metadata.
+    * *_Sittings:_* calendar showing the sittings of the plenary and the committees.
+    * *_Parliamentary publications:_* this is a list of publications and information; these publications are the reports that come out of sittings.
+    * *_Members:_* in this section, one can search for information about members of parliament (MPs)
+    * *_Member of parliament:_* general information such as name and election date.
+    * *_Personal Info:_* a complete biography of the member.
+    * *_Offices held:_* information about offices in which the member has a title
+    * *_Parliamentary activities:_* a list of content workflows the member has participated in. e.g. questions created by the member or motions moved by the member.
+    * *_Archive:_* access to current and historical activities of the parliament, the categories are:
+
+        * Parliaments
+        * Political groups
+        * Committees
+        * Governments
+        * Workspace: This is available for members of parliament and for clerks. This provides access to to the most relevant and current information for the user in a single page. e.g. for the Member of Parliament - the following 
