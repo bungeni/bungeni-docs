@@ -36,6 +36,15 @@ Installing Bungeni
    bungen/contrib
 
 
+Architecture
+------------
+
+.. toctree::
+   :maxdepth: 2
+
+   bungeni/arch_overview
+
+
 Systems Administration
 ----------------------
 
