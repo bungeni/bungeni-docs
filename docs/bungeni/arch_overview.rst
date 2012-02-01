@@ -211,3 +211,27 @@ to be performed behind VPN's and firewalls.
 Capistrano was originally designed to simplify and automate deployment of web applications to distributed environments, and
 originally came bundled with a set of tasks designed for deploying Rails applications. Read the `docs <https://github.com/capistrano/capistrano/wiki/Documentation-v2.x>`_.
 
+
+Supervisor
+----------
+
+`Supervisor <http://supervisord.org>`_ is a client/server system that allows its users to monitor and control a number
+of processes on UNIX-like operating systems. It is responsible for starting programs at its own invocation, responding to
+commands from clients, restarting crashed or exited subprocesses, logging its subprocess ``stdout`` and ``stderr`` output,
+and generating and handling `events` corresponding to points in subprocess lifetimes. It provides a web user interface to view
+and control process status.
+
+`The above two components are part of the deployment system.`
+
+Paster
+------
+
+Python Paste is a set of libraries to deploy WSGI applications, it covers all aspect of a CGI appliation: testing, dispatcher,
+authentication, debugging and deployment. Specifically the Paste Deployment is a system for finding and configuring WSGI applications
+and servers, it provides a single, simple function (loadapp) for loading a WSGI application from a configuration file or a Python Egg. The usual
+way to deploy a WSGI application is to use ``paster serve``, this command line counterpart to serve an application using  a `Paste Deploy`
+configuration file.
+
+Deliverance
+-----------
+
