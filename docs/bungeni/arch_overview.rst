@@ -238,3 +238,75 @@ Deliverance
 `Deliverance <http://http://packages.python.org/Deliverance/>` is a tool to theme HTML, applying a consistent style to applications and static files regardless of how they
 are implemented, and separating site-wide styling from application-level templating. Deliverance takes the HTML from a source then applies a `theme` to
 the HTML using something similar to XSLT transforms (but without restrictions).
+
+
+Zope 2 and 3
+------------
+
+Zope is an open source web application server primarily written in the `Python <http://python.org>`_ programming language.
+It features a transactional object database which can store ot only content and custom data, but also dynamic HTML templates,
+scripts, a search engine, and relational database (RDBMS) connection and code. It features a strong through-the-web development
+model, allowing you to update your website from anywhere in the world. Zope also features a tightly integrated security model.
+
+BlueBream or Zope 3 is a rewrite by Zope developers of the Zope web application server. It is built on top of the Zope Tool Kit (**ZTK**).
+The project tries to create a more developer-friendly and flexible platform for programming web applications. The original intent of BlueBream
+was to become a replacement for Zope 2, however this did not happen as planned. Instead Zope 2 continued to make up the majority of
+new Zope deployments, mostly due to the popularity of Plone. At this moment, many component of BlueBream are used in Zope 2 and in
+other frameworks, and the community uses the term ZTK to define a set of libraries used as a basis for Zope3, Zope2, bfg and Grok
+frameworks.
+
+The main innovation of BlueBream is the `comonent architecture`, which allows structuring code into small, composable units with
+introspectable interfaces, configurable through the ZCML files.
+
+PostgresSQL
+-----------
+
+PostgresSQL is a powerful, open source object relational database system (**ORDBMS**), developed at the University of California at
+Berkeley Computer Science Department. It has more than 15 years of active development and a proven architecture that has
+earned it a strong reputation for reliability, and correctness. As an enterprise class database, PostgresSQL boasts of sophisticated
+features such as Multi-Version Concurrency Control (**MVCC**), point in time recovery, tablespaces, asynchronous replication, nested
+transactions (savepoints), online/hot backups, a sophisticated query planner/optimizer, and write ahead logging for fault tolerance.
+
+SQLAlchemy
+----------
+
+`SQLAlchemy <http://sqlalchemy.org>`_ is the Python SQL toolkit and Object Relational Mapper (**ORM**) that gives application developers the full power and
+flexibility of SQL. It provides a full suit of well known enterprise-level persistence patterns, designed for efficient and high-performing
+database access, adapted into a simple and Pythonic DSL (*domain specific language*). SQLAlchemy doesn't view database as a collection
+of tables; it sees them as relational algebra engines. Its ORM enables classes to be mapped against database tables in more than one way.
+SQL constructs don't just select from just tables (you can also select from joins, subqueries, and uniions). Thus database relationships
+and domain object models can be cleanly decoupled from the beginning.
+
+Xapian
+------
+
+Xapian is an Open Source Search Engine Library. It is a highly adaptable toolkit which allows developers to easily index and integrate
+advanced search facilities to their own applications. It supporst the Probabilistic Information Retrieval model and also supporst a
+rich set of boolean query operators.
+
+
+Plone
+-----
+
+Plone is a powerful, flexible Content Management System (CMS) that is easy to install, use and extend. Plone lets non-technical people
+create maintain information using only a web browser. The main use of Plone is a basis for websites or intranets because of its modular
+nature which helps the customization of all aspects. Plone is a product that runs on the Zope 2 application server, so it shares
+the core functionalities like a components-based architecture, security and scalability.
+
+Theming Component & Dispatcher
+::::::::::::::::::::::::::::::
+
+Theming component
+=================
+
+The system uses Deliverance to add a common theme to BungeniPortal and BungeniCMS. Deliverance is integrated in teh *paster* middleware,
+so it is a *WSGI* application. Usually these type of applications are referred as pipeline components. Deliverance receives responses from the
+applications mapped in the `dispatch` section then transform the HTML on the basis of the ``rules.xml`` file. In ``portal/deploy.ini`` there is
+
+``
+[pipeline:main]
+
+pipeline = deliverance
+``
+
+dispatch/
