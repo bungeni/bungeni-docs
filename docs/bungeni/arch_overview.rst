@@ -16,6 +16,19 @@ Description
 To describe the architecture of Bungeni, UML will be used. Some snippets of code will be provided where necessary to
 describe bash file configurations, python code, paster and deliverance configuration files.
 
+
+
+Software Requirements
+=====================
+
+Operating System
+::::::::::::::::
+
+Bungeni can be run on Linux (or UNIX) based systems. With a little more tweaking, Windows server support for Bungeni is possible.
+
+Middleware
+==========
+
 Logical Views
 :::::::::::::
 
@@ -293,11 +306,13 @@ create maintain information using only a web browser. The main use of Plone is a
 nature which helps the customization of all aspects. Plone is a product that runs on the Zope 2 application server, so it shares
 the core functionalities like a components-based architecture, security and scalability.
 
-Theming Component & Dispatcher
-::::::::::::::::::::::::::::::
 
 Theming component
 =================
+
+Theming Component & Dispatcher
+::::::::::::::::::::::::::::::
+
 
 The system uses Deliverance to add a common theme to BungeniPortal and BungeniCMS. Deliverance is integrated in teh *paster* middleware,
 so it is a *WSGI* application. Usually these type of applications are referred as pipeline components. Deliverance receives responses from the
