@@ -301,12 +301,202 @@ Theming component
 
 The system uses Deliverance to add a common theme to BungeniPortal and BungeniCMS. Deliverance is integrated in teh *paster* middleware,
 so it is a *WSGI* application. Usually these type of applications are referred as pipeline components. Deliverance receives responses from the
-applications mapped in the `dispatch` section then transform the HTML on the basis of the ``rules.xml`` file. In ``portal/deploy.ini`` there is
+applications mapped in the `dispatch` section then transform the HTML on the basis of the ``rules.xml`` file. In ``portal/deploy.ini`` there is::
 
-``
-[pipeline:main]
+    [pipeline:main]
 
-pipeline = deliverance
-``
+    pipeline = deliverance
 
-dispatch/
+    dispatch
+
+The paster application is launched from *supervisord* , see ``supervisord.conf`` in the section [``program:portal``].
+
+The configuration for Deliverance is: ::
+
+    [filter:deliverance]
+
+    use = egg:bungeni.portal #deliverance
+
+    ## use rule_file_host here since that's the internal server:port for deliverance rule_uri =
+
+    http://%(rule_file_host)s/static/themes/rules.xml
+
+The paster configuration "egg:bungeni.portal#deliverance" is related to the declaration in the ``setup.py`` of bungeni.portal egg: ::
+
+    entry_points = """
+
+    [paste.filter_app_factory]
+
+    deliverance = bungeni.portal.middleware:make_deliverance_middleware
+
+    [paste.app_factory]
+
+    static = bungeni.portal.app:make_static_serving_app
+    """
+
+``make_deliverance_middleware`` is the factory method generating the real Deliverance app. When instantiated the
+``rule_uri`` parameter is passed to the factory.
+
+Dispatcher
+==========
+
+"egg:Paste#urlmap" is a standard component of the Paste framework. It maps the URLs to applications providing the
+same features of a rewrite rule or proxy rule in Apache. For more information about ``urlmap`` refer to:
+``http://pythonpaste.org/deploy <http://pythonpaste.org/deploy>``
+
+Bungeni Portal
+--------------
+
+This diagram shows the main components of BungeniPortal:
+Diagram 5: Packages in BungeniPortal
+
+.. image:: images/bungeni_packages.png
+
+**bungeni.server**
+
+The application is based on Zope3; this package contains the configuration of the libraries (what is included and excluded
+to reduce the startup time) and the function ``application_factory`` that is used by ``paster serve`` command to launch
+the application; it depends on ``ore.wsgiapp`` that allows bootstrapping a Zope3 environment as a *wsgi* application without
+a ZODB backend. This package contains also the utility **SMTP Mailer** used for sending e-mail.
+
+**bungeni.core**
+
+This package contains the application started from the ``application_factory`` entry point of ``bungeni.server`` and the
+contents creating the sections of the portal. The following diagram shows the main classes involved:
+
+Diagram 6: bungeni.core interation
+
+.. image:: images/bungeni_core_doc.png
+
+**bungeni.core.app**
+
+The main class is AppSetup that is the factory adapter for the BungeniApp (IBungeniApplication). As the name stated it setups
+the application:
+
+    * create indexes for each content and add these to the ``indexer`` object that warps around Xapian i.e. using a file system storage for the index catalog: ::
+
+        <buildoutpath>
+        /parts/index
+
+    * add to the application object the names bound to the functionalities. The application context is a dictionary-like object so for example the 'business' link is added as a key: ::
+
+       business = self.context['business'] = Section( title=_(u"Business"),
+                                description=_(u"Daily operations of the parliament."),
+                                default_name = u"whats-on")
+
+The sections are based on four types of classes.
+
+    * ``bungeni.core.content.Section``: is an ``OrderedContainer``, a Zope3 class modelling a folder in which the contents container are maintained in order. For example, 'Business', 'Members', 'Archive' are Section contents. Note that usually the OrderedContainers are Persistent objects (in Zope sense) but in this case they are not stored at all.
+    * ``bungeni.core.content.QueryContent``: a function that performs a SQL query is attached to this object, see ``bungeni.model.queries`` module. For example the "committees" and "bills" under business are QueryContent:::
+
+        business[u"committees"] = QueryContent(
+                    container_getter(get_current_parliament, 'committees'),
+                    title = _(u"Committees"),
+                    marker = interfaces.ICommitteeAddContext,
+                    description = _(u"View committees created by the current parliament."))
+
+    * ``bungeni.ui.calendar.CalendarView``: is a browser page that provides a calendar, see ``bungeni.ui``
+    * ``bungeni.ui.workspace.archive.WorkspaceArchiveView``: is the user/member workspace, see ``bungeni.ui``
+
+Below is a tree that shows the contents based on ``bungeni.models.domain``, they are the objects that mapped to tables
+and rows in the RDBMS and accesed through the SQLAlchemy ORM. For example the section '*bills*' is a BillContainer, a
+folderish object, and contains ``Bill`` from ``bungeni.models.domain``.
+
+**Note**
+``domain.Container`` is autogenerated by SQLAlchemy. Here is a partial diagram showing the objects and the relations with URLs.
+
+Diagram 7: Bungeni package integration
+
+.. image:: images/bungeni_pakcage_integration.png
+
+**bungeni.core.workflows**
+
+In ``bungeni.core.workflows`` there are configurations, factories and definitions of workflows used in the site. A workflow
+is tied to a ``bungeni.model.domain`` content through a configuration basd on the interface. An example of the implmentation
+for ``Bill`` content looks like (see: ``bungeni.models``):
+
+Diagram 8: Workflows in ``bungeni.core``
+
+.. image:: images/bungeni_workflows.png
+
+In ``configure.zcml`` of ``bungeni.core.workflows`` for Bill there is: ::
+
+    <adapter
+
+    for = "bungeni.models.interfaces.IBill"
+    provides = "ore.workflow.interfaces.IWorkflow"
+    factory = ".adaptors.BillWorkflowAdapter" />
+
+This means that ``BillWorkflowAdapter`` is the constructor of workflow for the class implementing the ``IBill`` interface.
+The operation is done through the ``load_workflow`` method passed to the ``AdaptedWorkflow`` class (*not shown in the diagram*),
+it reads the ``bill.xml`` file containing the description of the workflow in terms of states and transitions, and then generates
+the workflow object. In a similar way, the state of workflow is managed by the ``WorkflowState`` class, it provides the access
+to the state attribute in a ``Bill`` object; with this attribute the engine is able to determine the possible transitions
+to other states.
+
+For an explanation about entity based workflow engines see:
+`http://www.zope.org/Members/hathawsh/DCWorkflow_docs/default/DCWorkflow_doc.pdf <http://www.zope.org/Members/hathawsh/DCWorkflow_docs/default/DCWorkflow_doc.pdf>`_ and
+``workflow.txt`` in `http://pypi.python.org/pypi/ore.workflow <http://pypi.python.org/pypi/ore.workflow>`_ package.
+
+**bungeni.models**
+
+The main module of this package is 'domain', the module is rather complicated so this document reports only part of the inner classes
+to show the general structure. The base class is ``Entity``: the main scope is to provide ``ILocation`` interface that is
+used to declare the parent and the name of the object inside this parent container. The second important class is ``Parliament``,
+the root of the system, contains the containers of committees, members, bills etc.
+
+Below a partial view of the module:
+
+Diagram 9: ``bungeni.models``
+
+.. image:: images/bungeni_models.png
+
+As example of implementations on Parliament object there is the 'bills' name that is a ``BillContainer`` container ``Bills``
+objects. The ``Bill`` has two other classes associated:
+
+    * ``BillVersion``: it is a reference to a ``Bill`` object
+    * ``BillChange``: it is an operation done on an object
+
+The tables for ``Bill``, ``BillVersion`` and ``BillChange`` are generated in ``bungeni.models.schema`` module, e.g.: ::
+
+    bills = rdb.Table("bills", metadata,
+            rdb.Column("bill_id", rdb.Integer, rdb.ForeignKey('parliamentary_items.parliamentary'), primary_key=True),
+            rdb.Column("bill_type_id", rdb.Integer, rdb.ForeignKey('bill_types.bill_type_id'), nullable = False),
+            rdb.Column("ministry_id", rdb.Integer, rdb.ForeignKey('groups.group_id')),
+            rdb.Column("identifier", rdb.Integer),
+            rdb.Column("summary", rdb.UnicodeText),
+            rdb.Column("publication_date", rdb.Date),
+            )
+    bill_changes = make_changes_table(bills, metadata)
+    bill_versions = make_versions_table(bills, metadata, parliamentary_items)
+
+The table for versions and changes are generated through the methods ``make_changes_table`` and ``make_version_table``, they
+create new tables with specific fields, in particular ``bills_versions`` contains the columns of the ``parliament_items`` table.
+Below the relation between these classes (excerpt from classes and RDB table definitions):
+
+Diagram 10: Relation between content type tables
+
+.. image:: images/bungeni_contenttype_tables.png
+
+Each ``Bill`` object is a ``ParliamentaryItem`` in terms of RDB, this means that for each row in ``Bill`` table, a
+row is created in ``ParliamentaryItem`` table. If you modify a Bill object you are modifying a ``ParliamentaryItem`` row,
+then the old values of this record are copied in a new ``BillVersion`` row and it generates a new ``BillChange`` row.
+
+**bungeni.ui**
+
+The following packages are provide the interface for various parts of the BungeniPortal:
+
+    * forms package: content and container broswer views
+    * calendar pakcage: contains the code to manage events associated to parliamentary items.
+    * ``workspaces.py`` (and other modules): manage the access to items of a member for parliament.
+    * ``workflow.py`` (and other modules): manage the interface to access the workflow functionalities.
+    * ``versions.py`` (and others): provide the functionalities to access the item versions.
+
+Bungeni CMS
+===========
+
+At the moment of writing this document, Bungeni is powered by vanilla Plone with a minimal setup for the IA (*Information Architecture*).
+Some portal sections are folder but in the final integration with Deliverance they are mapped on BungeniPortal URLs.
+Refer to `http://www.plone.org <http://www.plone.org>`_ for more information about Plone. The version used is 3.3.3.
+
+
