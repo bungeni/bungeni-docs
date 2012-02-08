@@ -94,6 +94,22 @@ Development Environment
    dev/virtualenvs
 
 
+Tutorials
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   tutorials/prerequisites
+   tutorials/bungeni_install
+   tutorial/plone_install
+   tutorial/deliverance_install
+   tutorial/supervisord_use
+   tutorial/maintenance_updates
+   tutorial/proxy_webserver
+   tutorial/build_issues
+   tutorial/update_dev_instance
+   tutorial/package_index_server
 
 
 Additional Notes

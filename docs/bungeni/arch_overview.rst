@@ -24,7 +24,7 @@ Software Requirements
 Operating System
 ::::::::::::::::
 
-Bungeni can be run on Linux (or UNIX) based systems. With a little more tweaking, Windows server support for Bungeni is possible.
+Bungeni is easily run on Linux using the Ubuntu distro (11.04 and 10.04, 10.04 being recommended).
 
 Middleware
 ==========

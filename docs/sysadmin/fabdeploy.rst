@@ -60,3 +60,13 @@ and we can deploy with:
 
 Additional features include parallel execution, interaction with remote
 programs, and host grouping.
+
+
+Bungeni Fabric files
+====================
+
+Bungeni fabric deployment files can be found in the following repositories:
+
+    * `https://github.com/bungeni/bungeni-fab <https://github.com/bungeni/bungeni-fab>`_
+    *  `http://bungeni-portal.googlecode.com/svn/fabric/branches/ <http://bungeni-portal.googlecode.com/svn/fabric/branches/>`_
+
