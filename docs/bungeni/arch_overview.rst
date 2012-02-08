@@ -69,7 +69,7 @@ configuration file.
 Deliverance
 -----------
 
-`Deliverance <http://http://packages.python.org/Deliverance/>` is a tool to theme HTML, applying a consistent style to applications and static files regardless of how they
+`Deliverance <http://http://packages.python.org/Deliverance/>`_ is a tool to theme HTML, applying a consistent style to applications and static files regardless of how they
 are implemented, and separating site-wide styling from application-level templating. Deliverance takes the HTML from a source then applies a `theme` to
 the HTML using something similar to XSLT transforms (but without restrictions).
 
