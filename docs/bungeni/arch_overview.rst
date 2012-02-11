@@ -341,6 +341,7 @@ Minimal Hardware Requirements
 Processor
 :::::::::
 
+
 Memory
 ::::::
 
@@ -526,3 +527,32 @@ The paster configuration is a pipeline of various middleware at end of which the
 The configuration to start up the PostgresSQL database server.
 
 
+Architecture Polices and Mechanisms
+===================================
+
+Policies and Mechanisms
+:::::::::::::::::::::::
+
+General Policies and Mechanisms
+-------------------------------
+
+**Localization (i18n)**
+
+For localization, *zope.i18n* library is used. This package provides a way to register translations files for
+domains and languages. An example of this library being used in Python is shown here ::
+
+    from zope.i18nmessageid import MessageFactory
+    _ = MessageFactory = MessageFactory('bungeni.ui')
+    #
+    # some more code
+    #
+    title = _(u'label_translate', default=u'Language:')
+
+
+or ::
+
+    from zope.i18n import translate
+    #
+    # more code
+    #
+    text = translate(self.body)
