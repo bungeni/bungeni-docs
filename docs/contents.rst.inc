@@ -84,6 +84,16 @@ different scenarios and workflows availed when you use the Bungeni portal.
    development/intro
 
 
+Testing Guide
+-------------
+
+This part of the guide documents how tests are run on Bungeni.
+
+.. toctree::
+   :maxdepth: 2
+
+   testing/intro
+
 Development Environment
 -----------------------
 
