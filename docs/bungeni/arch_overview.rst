@@ -556,3 +556,82 @@ or ::
     # more code
     #
     text = translate(self.body)
+
+See the multilingual seciont for use in page templates and the format of translations file.
+
+Multilingual UI or Templating
+-----------------------------
+The multilingual feature for the UI is provided by the i18n feature integrated in the Zope Page
+Template system. For example in ``bungeni/ui/viewlets/templates/whatson.pt`` there is:::
+
+    <div metal:fill-slot="body" i18n:domain="bungeni.ui">
+    <h1><a href="/business" i18n:translate="">What's on</a></h1>
+
+*i18n:domain* specifies the translation domain because the same string can be present in
+different domains. The *i18n:translate* command instruct the engine to translate the text in
+the tag based on the browser language. The translations are provided from ``.po`` files stored in the
+software packages. For example, for ``bungeni.ui`` there is the folder ``locales/en/LC_MESSAGES``
+containing the domain ``bungeni.ui.po`` and the compiled version ``bungeni.ui.mo``. The format
+of files is very simple. It contains a metadata part and then the translations in the form of (message id,
+message string) couple:::
+
+    "Project-Id-Version: \n"
+
+    "POT-Creation-Date: Thu Jan 14 13:13:54 2010\n"
+
+    "PO-Revision-Date: 2010-01-14 13:26+0300\n"
+
+    "Last-Translator: Christian Ledermann <christian@parliaments.info>\n" "Language-Team: \n"
+
+    "MIME-Version: 1.0\n"
+
+    "Content-Type: text/plain; charset=UTF-8\n"
+
+    "Content-Transfer-Encoding: 8bit\n"
+
+    #
+
+    #: src/bungeni.ui/bungeni/ui/audit.py:20
+
+    msgid "action"
+
+    msgstr "Action"
+
+    ...
+
+As stated above the templating system is based on Zope Page Templates, refer to
+`<http://zpt.sourceforge.net http://zpt.sourceforge.net>`_ for an overview of the software. The main
+feature of this templating system is the separation between the namespace of commands and the
+namespace of HTML, this way the HTML is still valid and the TAL (Template Attribute Language) commands
+aren't interfering with it it, for example:::
+
+    <title tal:content="here/title">Page Title</title>
+
+where *tal:content* rewrite the tag text. For further explanation: `<http://docs.zope.org/zope2/zope2book/ZPT.html http://docs.zope.org/zope2/zope2book/ZPT.html>`_
+
+**Storage**
+
+For storing the data of BungeniPortal, a well known RDB databases, PostgresSQL, was chosen. The BungeniCMS, on the other hand,
+uses the usual Zope setup with ZODB, a tested Objec oriented database.
+
+**Security**
+
+Both BungeniPortal and BungeniCMS are based on Zope, it uses a strong authentication/authorization system based
+on permissions and roles. The programmer can assign a permission to a function or a method of a class using the ``zcml``
+configuration or with functions (as in Plone) such as ``declareProtected``, ``declarePrivate`` and ``declarePublic``.
+After that the programmer creates a set of roles and assigns the permissions to roles, then the roles are assigned to users
+and groups, either in ``zcml`` or through the ZMI interface in Plone (the setup is stored on file system). The publisher of
+Zope checks the user permissions before rendering a page or calling a method, raising an Unauthorized exception in case
+the user hasn't got the required permission.
+
+**Information Architecture**
+
+The information architecture is very parliament specific.
+
+**System management and monitoring**
+
+Supervisord is used to manage the server's services (status, start, stop and restart).
+
+**Policies and Mechanisms for Quality Requirements**
+
+There are no policies or mechanisms for quality requirements right now.
