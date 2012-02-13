@@ -600,7 +600,7 @@ message string) couple:::
     ...
 
 As stated above the templating system is based on Zope Page Templates, refer to
-`<http://zpt.sourceforge.net http://zpt.sourceforge.net>`_ for an overview of the software. The main
+`http://zpt.sourceforge.net <http://zpt.sourceforge.net>`_ for an overview of the software. The main
 feature of this templating system is the separation between the namespace of commands and the
 namespace of HTML, this way the HTML is still valid and the TAL (Template Attribute Language) commands
 aren't interfering with it it, for example:::
@@ -635,3 +635,4 @@ Supervisord is used to manage the server's services (status, start, stop and res
 **Policies and Mechanisms for Quality Requirements**
 
 There are no policies or mechanisms for quality requirements right now.
+
