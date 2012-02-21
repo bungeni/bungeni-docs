@@ -653,5 +653,5 @@ References
 	* Xapian: http://xapian.org/
 	* supervisord: http://supervisord.org/
 	* Capistrano:
-	* http://www.capify.org/index.php/Capistrano
-	* http://www.capify.org/index.php/Getting_Started
+		* http://www.capify.org/index.php/Capistrano
+		* http://www.capify.org/index.php/Getting_Started
