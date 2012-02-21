@@ -636,3 +636,22 @@ Supervisord is used to manage the server's services (status, start, stop and res
 
 There are no policies or mechanisms for quality requirements right now.
 
+
+References
+==========
+
+	* Bungeni http://www.bungeni.org
+	* repoze.bfg: http://bfg.repoze.org
+	* Paster: http://pythonpaste.org/ and http://pythonpaste.org/script/
+	* Zope: http://www.zope.org
+	* Buildout: http://pypi.python.org/pypi/zc.buildout
+	* Plone: http://www.plone.org
+	* Deliverance: http://deliverance.openplans.org/philosophy.html
+	* Postgres: http://www.postgresql.org/
+	* SQLAlchemy: http://www.sqlalchemy.org/
+	* Subversion: http://subversion.tigris.org/
+	* Xapian: http://xapian.org/
+	* supervisord: http://supervisord.org/
+	* Capistrano:
+	* http://www.capify.org/index.php/Capistrano
+	* http://www.capify.org/index.php/Getting_Started
