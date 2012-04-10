@@ -5,7 +5,7 @@ Bungeni Technical Documentation
 
 -----------
 
-This document is currently under heavy development.Head over to the `wiki <https://github.com/bungeni/bungeni-docs/wiki/>`_ page to view this
+This document is currently under heavy development. Head over to the `wiki <https://github.com/bungeni/bungeni-docs/wiki/>`_ page to view this
 
 Topics include:
 
