@@ -6,8 +6,9 @@ Bungeni Technical Documentation
 -----------
 
 This document is currently under heavy development.
-|Head over to the wiki `wiki <https://github.com/bungeni/bungeni-docs/wiki/>`_ page to view this
-Topics include:
+
+|Head over to the `wiki <https://github.com/bungeni/bungeni-docs/wiki/>`_ page to view this
+|Topics include:
 
 - Platform/version specific installations
 - Py2app, Py2exe, bbfreeze, pyInstaller
